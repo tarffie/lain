@@ -13,10 +13,13 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@types/node": "^20.14.10",
         "typescript": "^5.5.3"
     },
     "dependencies": {
+        "@quest-fantasy/lib": "workspace:*",
+        "dotenv": "^16.4.5",
         "tsx": "^4.16.2",
-	"@quest-fantasy/lib": "workspace:*"
+	"discord.js": "14.15.3"
     }
 }
