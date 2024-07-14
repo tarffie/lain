@@ -1,3 +1,4 @@
+export {}; 
 const commands = [];
 const fs = require('node:fs');
 const path = require('node:path');
@@ -33,4 +34,4 @@ const rest = new REST().setToken(token);
         console.error(error);
     }
 })();
-export {};
+
