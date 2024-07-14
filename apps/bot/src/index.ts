@@ -6,7 +6,6 @@ const { Client, Collection, Events, GatewayIntentBits, Routes } = require('disco
 
 //create a new client instance 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-client.login(token);
 client.commands = new Collection();
 
 const foldersPath = path.join(__dirname, 'commands');
@@ -26,26 +25,17 @@ for (const folder of commandsFolders) {
     }
 }
 
-client.once(Events.ClientReady, (readyClient: any) => {
-    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
-});
+const eventsPath = path.join(__dirname, "events");
+const eventsFiles = fs.readdirSync(eventsPath).filter((file: any) => file.endsWith('.ts'));
 
-client.on(Events.InteractionCreate, async( interaction: any) => {
-    if(!interaction.isChatInputCommand()) return; 
-    const command = interaction.client.commands.get(interaction.commandName);
-    
-    if(!command) {
-	console.error(`No command matching ${interaction.commandName} was found.`);
-	return;
+for (const file of eventsFiles) {
+    const filePath = path.join(eventsPath, file);
+    const event = require(filePath);
+    if (event.once) { 
+        client.once(event.name, (...args:any) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args:any) => event.execute(...args));
     }
-    try { 
-	await command.execute(interaction);
-    } catch(error) {
-	console.error(error);
-	if (interaction.replied || interaction.deferred) {
-	    await interaction.followUp({ content: 'There was an error while executing command!', ephemeral: true });
-	} else { 
-	    await interaction.reply({ content: 'There was an error while executing command!', ephemeral: true });
-	}
-    }
-});
+}
+
+client.login(token);
