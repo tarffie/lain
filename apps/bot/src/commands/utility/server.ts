@@ -1,3 +1,4 @@
+export {}; // there must be a better way to solve this ... 
 const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
   data: new SlashCommandBuilder()

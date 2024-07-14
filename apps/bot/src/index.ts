@@ -1,8 +1,8 @@
 // Require the necessary discord.js classes
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits, REST, Routes } = require('discord.js');
 const { clientId, guildId, token } = require('../config.json');
+const { Client, Collection, Events, GatewayIntentBits, Routes } = require('discord.js');
 
 //create a new client instance 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -30,7 +30,7 @@ client.once(Events.ClientReady, (readyClient: any) => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
-client.on(Events.InteractionCreate, async (interaction: any) => {
+client.on(Events.InteractionCreate, async( interaction: any) => {
     if(!interaction.isChatInputCommand()) return; 
     const command = interaction.client.commands.get(interaction.commandName);
     
@@ -50,4 +50,3 @@ client.on(Events.InteractionCreate, async (interaction: any) => {
 	}
     }
 });
-
