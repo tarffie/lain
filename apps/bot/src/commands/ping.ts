@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { bot } from '../../index.js'
+import { bot } from '../index.js'
 //import { i18n } from '../utils/i18n'
 
 export default {

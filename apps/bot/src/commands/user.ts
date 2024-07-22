@@ -5,9 +5,8 @@ export default {
     async execute(interaction: ChatInputCommandInteraction) {
         try {
             // this part for some reason breaks when compared with strict equal operator   
-            if (!(interaction.member == undefined)) {
+            if (!(interaction.member === undefined)) {
                 interaction.reply(
-
                     `This command was run by·${interaction.user.username}`,
                 );
             }

@@ -46,7 +46,7 @@ export class Bot {
     private async registerSlashCommands() {
         const rest = new REST({ version: "9" }).setToken(config.TOKEN);
 
-        const commandFiles = readdirSync(join(__dirname, "..", "commands")).filter((file) => file.endsWith(".js"));
+        const commandFiles = readdirSync(join(__dirname, "..", "commands")).filter((file) => !file.endsWith("map"))
 
         for (const file of commandFiles) {
             const command = await import(join(__dirname, "..", "commands", `${file}`));
@@ -99,7 +99,7 @@ export class Bot {
                 const permissionsCheck: PermissionResult = await checkPermissions(command, interaction);
 
                 if (permissionsCheck.result) {
-                    command.execute(interaction as ChatInputCommandInteraction);
+                    command.execute(interaction as ChatInputCommandInteraction[]);
                 } else {
                     throw new MissingPermissionsException(permissionsCheck.missing);
                 }

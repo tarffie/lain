@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "tsx watch src/{index.ts,deployCommand.ts}",
         "lint": "eslint .",
-        "start": "node build/{index.js,deployCommand.js}",
+        "start": "node build/index.js",
         "build": "tsc"
     },
     "keywords": [],
