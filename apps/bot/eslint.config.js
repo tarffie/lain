@@ -1,4 +1,3 @@
-import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 //export default [
@@ -9,8 +8,8 @@ import tseslint from 'typescript-eslint';
 //  eslint.configs.recommended,
 //  ...tseslint.configs.recommended,
 //];
+
 export default tseslint.config(
-  eslint.configs.recommended,
   ...tseslint.configs.strict,
   ...tseslint.configs.stylistic,
 );
