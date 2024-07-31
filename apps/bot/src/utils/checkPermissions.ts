@@ -19,5 +19,5 @@ export async function checkPermissions(
 
     if (!(command.permissions)) return { result: true, missing: [] }
     const missing = member.permissions.missing(requiredPermissions)
-    return { result: !Boolean(missing.length), missing }
+    return { result: !missing.length, missing }
 }

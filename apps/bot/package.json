@@ -1,34 +1,39 @@
 {
-    "name": "bot",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "tsx watch src/{index.ts,deployCommand.ts}",
-        "lint": "eslint .",
-        "start": "node build/index.js",
-        "build": "tsc"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@eslint/js": "^9.6.0",
-        "@types/eslint__js": "^8.42.3",
-        "@types/i18n": "^0.13.12",
-        "@types/node": "^20.14.10",
-        "eslint": "9.x",
-        "typescript": "^5.5.3",
-        "typescript-eslint": "^7.16.0"
-    },
-    "type": "module",
-    "dependencies": {
-        "@quest-fantasy/lib": "workspace:*",
-        "discord.js": "14.15.3",
-        "dotenv": "^16.4.5",
-        "i18n": "^0.15.1",
-        "promises": "link:@types/node:fs/promises",
-        "tsx": "^4.16.2"
-    }
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/{index.ts,deployCommand.ts}",
+    "lint": "eslint .",
+    "start": "node build/index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^8.57.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/i18n": "^0.13.12",
+    "@types/node": "^20.14.13",
+    "eslint": "~8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.8.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.18.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@quest-fantasy/lib": "workspace:*",
+    "discord.js": "14.15.3",
+    "dotenv": "^16.4.5",
+    "i18n": "^0.15.1",
+    "pkg.json": "^2.0.8",
+    "promises": "link:@types/node:fs/promises",
+    "tsx": "^4.16.3"
+  }
 }
