@@ -1,6 +1,5 @@
 {
-    "ping" : {
-	"description": "reply user with pong"
-	"result": "pong"
-    }
+	"common": {
+		"cooldownMessage": "common.cooldownMessage"
+	}
 }
