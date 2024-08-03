@@ -1,5 +1,6 @@
 interface Modifier {
-  advantage: number;
+  advantage: boolean;
+  disadvantage: boolean;
   mod: number;
 }
 

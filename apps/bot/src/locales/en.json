@@ -1,5 +1,34 @@
 {
-	"common": {
-		"cooldownMessage": "common.cooldownMessage"
-	}
+  "common": {
+    "cooldownMessage": "you should wait a tad more before trying that again."
+  },
+  "ping": {
+    "description": "reply with pong",
+    "message": "pong"
+  },
+  "server": {
+    "serverStatus": "This server is {name} and has {memberCount} members",
+    "serverSatus": "server.serverSatus"
+  },
+  "roll": {
+    "name": "roll",
+    "description": "roll n dice with modificators (or not)",
+    "dice": {
+      "name": "dice",
+      "description": "inform your dice number of sizes"
+    },
+    "advantage": {
+      "name": "advantage",
+      "description": "will the roll have advantage?"
+    },
+    "disadvantage": {
+      "name": "disadvantage",
+      "description": "will the roll have disadvantage?"
+    },
+    "option1": {
+      "name": "modifiers",
+      "description": "add your integer modifiers (+/-)"
+    },
+    "action": "dice roll -> "
+  }
 }
