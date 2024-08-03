@@ -56,7 +56,7 @@ class Die {
   ): Promise<number> {
     if (!(hasAdv || hasDis)) {
       let result = Math.floor(Math.random() * sides + Math.random() * sides);
-      if (result > sides) result = 20;
+      if (result > sides) result = sides;
       console.log(`you rolled ${result} with ${mods} as mods`);
       return result + mods;
     } else {
