@@ -13,9 +13,13 @@
   "roll": {
     "name": "roll",
     "description": "roll n dice with modificators (or not)",
+    "qty" : {
+      "name": "quantity",
+      "description": "inform how many dice"
+    },
     "dice": {
       "name": "dice",
-      "description": "inform your dice number of sizes"
+      "description": "inform your number of sides for your dice"
     },
     "advantage": {
       "name": "advantage",
@@ -25,7 +29,7 @@
       "name": "disadvantage",
       "description": "will the roll have disadvantage?"
     },
-    "option1": {
+    "modifiers": {
       "name": "modifiers",
       "description": "add your integer modifiers (+/-)"
     },

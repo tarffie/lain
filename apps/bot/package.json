@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/{index.ts,deployCommand.ts}",
+    "dev": "tsx watch src/index.ts",
     "lint": "eslint .",
     "start": "node build/index.js",
     "build": "tsc"
@@ -14,14 +14,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@eslint/js": "^8.56.0 || ^9.0.0",
+    "@eslint/js": "^9.8.0",
     "@types/eslint__js": "^8.42.3",
     "@types/i18n": "^0.13.12",
-    "@types/node": "^20.14.13",
-    "eslint": "^8.56.0 || ^9.0.0",
+    "@types/node": "^20.14.14",
+    "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.8.0",
+    "globals": "^15.9.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.18.0"
@@ -29,11 +29,12 @@
   "type": "module",
   "dependencies": {
     "@quest-fantasy/lib": "workspace:*",
+    "bot": "link:",
     "discord.js": "14.15.3",
     "dotenv": "^16.4.5",
     "i18n": "^0.15.1",
     "pkg.json": "^2.0.8",
     "promises": "link:@types/node:fs/promises",
-    "tsx": "^4.16.3"
+    "tsx": "^4.16.5"
   }
 }

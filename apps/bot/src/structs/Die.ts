@@ -1,3 +1,4 @@
+import { assert } from '../utils/assert.js'
 import { Modifier } from '../interfaces/Modifier.js';
 //import { Modifier } from '../interfaces/Modifier.ts'
 /**
@@ -7,14 +8,12 @@ class Die {
   sides: number;
   qty: number = 1;
   modifier: Modifier;
-  description: string | null;
   /**
    * @param {number} sides The number of sides the die has e.g : 6, 12, 20
    * @param {number} [qty=1] the number of dice to roll e.g : 1, 2, 4
    * @param {number[]} Modifier[] the modifiers that affect your die
    * @param {number} [min=1]  minimum possible roll value
    * @param {number} [max=null] The maximum possible roll value. Defaults to number of 'sides'
-   * @param {string|null} [description=null] The roll description
    *
    * @throws {RequiredArgumentError} sides is required
    * @throws {TypeError} qty must be a positive integer, and modifiers must be valid.
@@ -23,7 +22,6 @@ class Die {
     sides: number,
     qty: number,
     { mod, advantage, disadvantage }: Modifier,
-    description: string | null,
   ) {
     try {
       this.sides = sides;
@@ -32,10 +30,6 @@ class Die {
         advantage,
         disadvantage,
       };
-      this.description =
-        description !== null
-          ? description
-          : 'there was no description provived.';
       this.qty = qty;
     } catch (e: unknown) {
       const error = e as Error;
@@ -48,38 +42,36 @@ class Die {
     }
   }
 
+
+  //{die.advantage, disadvantage, die.mod}
   async roll(
     sides: number,
-    hasAdv = false,
-    hasDis = false,
-    mods: number,
+    {advantage, disadvantage, mod}: Modifier,
   ): Promise<number> {
-    if (!(hasAdv || hasDis)) {
+    if (!(advantage || disadvantage)) {
       let result = Math.floor(Math.random() * sides + Math.random() * sides);
       if (result > sides) result = sides;
-      console.log(`you rolled ${result} with ${mods} as mods`);
-      return result + mods;
+      console.log(`you rolled ${result} with ${mod} as mod`);
+      return result + mod;
     } else {
       const results: number[] = [];
       for (;;) {
-        const num = Math.floor(Math.random() * sides + Math.random() * sides);
-        if (num <= sides) {
-          results.push(num);
-        }
         if (results.length == 2) break;
+        const num = Math.floor(Math.random() * sides + Math.random() * sides);
+        num <= sides ? results.push(num) : pass;
       }
       // consider using map you beautiful bastard
       results.sort((a: number, b: number) => b - a);
-      if (hasAdv) {
+      if (advantage) {
         console.log(
-          `you rolled ${results[0]} (advantage) with ${mods} as mods, the lesser die was ${results[1]}`,
+          `you rolled ${results[0]} (advantage) with ${mod} as mod, the lesser die was ${results[1]}`,
         );
-        return results[0] + mods;
+        return results[0] + mod;
       } else {
         console.log(
-          `you rolled ${results[1]} (disadvantage) with ${mods} as mods, the bigger die was ${results[0]}`,
+          `you rolled ${results[1]} (disadvantage) with ${mod} as mod, the bigger die was ${results[0]}`,
         );
-        return results[1] + mods;
+        return results[1] + mod;
       }
     }
   }
@@ -93,9 +85,7 @@ class Die {
       results.push(
         await this.roll(
           die.sides,
-          die.modifier['advantage'],
-          die.modifier['disadvantage'],
-          die.modifier.mod,
+          die.modifier 
         ),
       );
     }
