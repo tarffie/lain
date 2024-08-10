@@ -50,7 +50,7 @@ export default {
       await die.rollDice(die)
     )
     interaction.reply(
-      `${i18n.__mf('roll.action')} ${await die.rollDice(die)}`,
+      `${i18n.__mf('roll.action')} [${await die.rollDice(die)}]`,
     );
   },
 };

@@ -58,7 +58,7 @@ class Die {
       for (;;) {
         if (results.length == 2) break;
         const num = Math.floor(Math.random() * sides + Math.random() * sides);
-        num <= sides ? results.push(num) : pass;
+        num <= sides ? results.push(num) : null;
       }
       // consider using map you beautiful bastard
       results.sort((a: number, b: number) => b - a);
@@ -79,7 +79,7 @@ class Die {
    * @param {Die} die
    * @return {Promise<number[]>} roll
    */
-  async rollDice(die: Die): Promise<number[]> {
+  async rollDice(die: Die): Promise<number> {
     const results: number[] = [];
     for (let i = 0; i < die.qty; ++i) {
       results.push(
@@ -89,7 +89,8 @@ class Die {
         ),
       );
     }
-    return results;
+    const final = results.reduce((x, y) => x + y)
+    return final
   }
 }
 
