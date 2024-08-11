@@ -1,4 +1,4 @@
-function assert(valid: any, msg: string) {
+function assert(valid: unknown, msg: string) {
   if (!valid) {
     throw new Error(`assert was invalid: ${msg}`)
   }
