@@ -1,9 +1,10 @@
 FROM node:current-alpine
 
-COPY package.json package.json  
+WORKDIR /app
+
+COPY package.json package.json
 RUN npm install
 
-# Add your source files
-COPY . .  
+COPY . .
 RUN npm run build
-CMD ["npm","run","start"]  
+CMD ["npm","run","start"]
