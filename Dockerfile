@@ -1,9 +1,9 @@
 FROM node:current-alpine
 
 COPY package.json package.json  
-RUN pnpm install
+RUN npm install
 
 # Add your source files
 COPY . .  
-RUN pnpm build
-CMD ["pnpm","start"]  
+RUN npm build
+CMD ["npm","start"]  

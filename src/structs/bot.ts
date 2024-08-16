@@ -42,6 +42,8 @@ export class Bot {
    * Method for starting all the listeners for discord events.
    */
   private initializeClient(): void {
+    console.log("Starting bot...");
+
     this.client.login(config.TOKEN).catch(console.error);
 
     this.client.on(
