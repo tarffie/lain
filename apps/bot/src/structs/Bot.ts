@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url';
 
 import { config } from '@utils/config.js';
 import { i18n } from '@utils/i18n.js';
-import { checkPermissions } from '@utils/checkPermissions';
+import { checkPermissions } from '@utils/checkPermissions.js';
 import { MissingPermissionsException } from '@errors/permissionMissing.js';
 import { Command } from '@interfaces/commands.js';
 

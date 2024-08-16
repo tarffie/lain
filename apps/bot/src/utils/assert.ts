@@ -1,4 +1,4 @@
-import { AssertionError } from "@errors/assertionError";
+import { AssertionError } from "@errors/assertionError.js";
 
 /**
  * Asserts that a condition is true. Throws an error with a specified message if the condition is false.
