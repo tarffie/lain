@@ -17,7 +17,7 @@
   <ul>
     <li>clone the repository: <code>git clone https://github.com/tarffie/lain.git cd lain</code></li>
     <li>build the Docker Image: <code>docker build -t lain-bot .</code></li>
-    <li>run the docker container: <code>docker run -d --env-file .env lain</code></li>
+    <li>run the docker container: <code>docker run -d --env-file .env lain-bot</code></li>
   </ul>
   <b>contributing:</b>
   <ul>

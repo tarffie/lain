@@ -5,5 +5,5 @@ RUN npm install
 
 # Add your source files
 COPY . .  
-RUN npm build
-CMD ["npm","start"]  
+RUN npm run build
+CMD ["npm","run","start"]  
