@@ -7,7 +7,7 @@
     "message": "pong"
   },
   "server": {
-    "serverStatus": "This server is {name} and has {memberCount} members",
+    "serverStatus": "This server is {{name}} and has {{memberCount}} members",
     "serverSatus": "server.serverSatus"
   },
   "roll": {
@@ -33,6 +33,6 @@
       "name": "modifiers",
       "description": "add your integer modifiers (+/-)"
     },
-    "action": "dice roll -> "
+    "action": "dice roll -> {number}"
   }
 }

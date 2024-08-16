@@ -1,20 +1,20 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 
-export default {
-  data: new SlashCommandBuilder()
+/**
+ * Sets up the command.
+ */
+const data = new SlashCommandBuilder()
     .setName('user')
-    .setDescription('Provides information about the user.'),
-  async execute(interaction: ChatInputCommandInteraction) {
-    try {
-      // this part for some reason breaks when compared with strict equal operator
-      if (!(interaction.member === undefined)) {
-        interaction.reply(
-          `This command was run by·${interaction.user.username}`,
-        );
-      }
-    } catch (e: unknown) {
-      console.error('interaction.user was undefined.\n');
-      console.error(e as Error);
-    }
-  },
+    .setDescription('Provides information about the user.');
+
+/**
+ * Handles the execution of the command.
+ */
+const execute = async (interaction: ChatInputCommandInteraction) => {
+  await interaction.reply(`This command was run by·${interaction.user.username}`);
+}
+
+export default {
+  data,
+  execute
 };

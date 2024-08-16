@@ -4,6 +4,9 @@ import {
   SlashCommandBuilder,
 } from 'discord.js';
 
+/**
+ * Represents a command for the Discord bot.
+ */
 export interface Command {
   permissions?: string[];
   cooldown?: number;

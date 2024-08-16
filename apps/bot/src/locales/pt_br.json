@@ -1,1 +1,38 @@
-{}
+{
+  "common": {
+    "cooldownMessage": "você deve esperar um pouco mais antes de tentar novamente."
+  },
+  "ping": {
+    "description": "responder com pong",
+    "message": "pong"
+  },
+  "server": {
+    "serverStatus": "Este servidor é {name} e tem {memberCount} membros",
+    "serverSatus": "server.serverSatus"
+  },
+  "roll": {
+    "name": "rolar",
+    "description": "rolar n dados com modificadores (ou não)",
+    "qty": {
+      "name": "quantidade",
+      "description": "informe quantos dados"
+    },
+    "dice": {
+      "name": "dados",
+      "description": "informe o número de lados dos seus dados"
+    },
+    "advantage": {
+      "name": "vantagem",
+      "description": "o rolamento terá vantagem?"
+    },
+    "disadvantage": {
+      "name": "desvantagem",
+      "description": "o rolamento terá desvantagem?"
+    },
+    "modifiers": {
+      "name": "modificadores",
+      "description": "adicione seus modificadores inteiros (+/-)"
+    },
+    "action": "rolamento de dados -> {number}"
+  }
+}
