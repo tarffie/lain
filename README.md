@@ -1,7 +1,7 @@
 <samp>
   <br>
   <p align="center">
-    Hi, I'm <b>「 Lain 」</b>, an <b>RPG</b> Discord bot!
+    Hi, I'm <b>「 Lain 」</b>, a <b>RPG</b> Discord bot!
   </p>
   <br>
   <b>features:</b>
