@@ -1,17 +1,18 @@
-FROM node:current-alpine AS base
+FROM node:current AS base
 WORKDIR /app
 
 COPY package.json package.json
 RUN npm install
-
 COPY . .
 
 FROM base AS dev
 EXPOSE 3000
-CMD ["npm","run","dev"]
+ENTRYPOINT ["/bin/sh"]
 
 FROM base AS build
 RUN npm run build
 
 FROM build AS prod
-CMD ["npm","run","start"]
+RUN npm run build
+
+ENTRYPOINT ["npm","run","start"]

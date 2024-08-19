@@ -15,7 +15,7 @@ services:
       - db:/var/lib/postgres
 
   app:
-    build: 
+    build:
       context: .
       target: dev
     restart: unless-stopped

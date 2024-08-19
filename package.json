@@ -18,6 +18,8 @@
     "@types/eslint__js": "^8.42.3",
     "@types/i18n": "^0.13.12",
     "@types/node": "^20.14.14",
+    "@types/pg": "^8.11.6",
+    "drizzle-kit": "^0.24.0",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -28,8 +30,10 @@
   },
   "type": "module",
   "dependencies": {
+    "@neondatabase/serverless": "^0.9.4",
     "discord.js": "14.15.3",
     "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.33.0",
     "i18n": "^0.15.1",
     "pkg.json": "^2.0.8",
     "tsx": "^4.16.5"

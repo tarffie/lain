@@ -2,9 +2,16 @@
  * Configuration settings for the application.
  */
 export interface Config {
-  TOKEN: string
-  CLIENTID: string
-  GUILDID: string
-  LOCALE: string
-}
+  // bot parameters
+  TOKEN: string;
+  CLIENTID: string;
+  GUILDID: string;
+  LOCALE: string;
 
+  // database parameters
+  POSTGRESDB_USER: string;
+  POSTGRESDB_ROOT_PASSWORD: string;
+  POSTGRESDB_URL: string;
+  POSTGRESDB_DATABASE: string;
+  POSTGRESDB_LOCAL_PORT: string;
+}
