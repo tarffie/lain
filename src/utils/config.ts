@@ -18,7 +18,7 @@ function validateConfig(): Config {
     POSTGRESDB_ROOT_PASSWORD,
     POSTGRESDB_URL,
     POSTGRESDB_DATABASE,
-    POSTGRESDB_LOCAL_PORT,
+    POSTGRESDB_DOCKER_PORT,
   } = process.env;
 
   const requiredEnvVars = {
@@ -29,7 +29,7 @@ function validateConfig(): Config {
     POSTGRESDB_ROOT_PASSWORD,
     POSTGRESDB_URL,
     POSTGRESDB_DATABASE,
-    POSTGRESDB_LOCAL_PORT,
+    POSTGRESDB_DOCKER_PORT,
   };
 
   const missingVars = Object.entries(requiredEnvVars)
@@ -51,7 +51,7 @@ function validateConfig(): Config {
     POSTGRESDB_ROOT_PASSWORD: POSTGRESDB_ROOT_PASSWORD!,
     POSTGRESDB_URL: POSTGRESDB_URL!,
     POSTGRESDB_DATABASE: POSTGRESDB_DATABASE!,
-    POSTGRESDB_LOCAL_PORT: POSTGRESDB_LOCAL_PORT!,
+    POSTGRESDB_DOCKER_PORT: POSTGRESDB_DOCKER_PORT!,
   };
 }
 

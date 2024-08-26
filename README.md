@@ -19,7 +19,18 @@
     <li>build the Docker Image: <code>docker build -t lain-bot .</code></li>
     <li>run the docker container: <code>docker run -d --env-file .env lain-bot</code></li>
   </ul>
-  <b>contributing:</b>
+  <b>database generation & migration</b>
+  <ul>
+    <li>generate a new migration: <code>npx drizzle-kit generate</code></li>
+    <li>migrate: <code>npx drizzle-kit migrate</code></li>
+  </ul>
+  <b>database connection</b>
+  <ul>
+    <li> login to your database: <code> psql -U ${POSTGRESDB_USER} -d ${POSTGRESDB_DATABASE} -h postgresdb -p ${POSTGRESDB_DOCKER_PORT} </code>
+  </ul>
+
+<b>contributing:</b>
+
   <ul>
     <li>Feel free to open issues or pull requests. Contributions are welcome!</li>
   </ul>

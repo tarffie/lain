@@ -1,38 +1,50 @@
 {
   "common": {
-    "cooldownMessage": "você deve esperar um pouco mais antes de tentar novamente."
+    "cooldownMessage": "you should wait a tad more before trying that again."
   },
   "ping": {
-    "description": "responder com pong",
+    "description": "reply with pong",
     "message": "pong"
   },
   "server": {
-    "serverStatus": "Este servidor é {name} e tem {memberCount} membros",
+    "serverStatus": "This server is {{name}} and has {{memberCount}} members",
     "serverSatus": "server.serverSatus"
   },
   "roll": {
-    "name": "rolar",
-    "description": "rolar n dados com modificadores (ou não)",
-    "qty": {
-      "name": "quantidade",
-      "description": "informe quantos dados"
+    "name": "roll",
+    "description": "roll n dice with modificators (or not)",
+    "qty" : {
+      "name": "quantity",
+      "description": "inform how many dice"
     },
     "dice": {
-      "name": "dados",
-      "description": "informe o número de lados dos seus dados"
+      "name": "dice",
+      "description": "inform your number of sides for your dice"
     },
     "advantage": {
-      "name": "vantagem",
-      "description": "o rolamento terá vantagem?"
+      "name": "advantage",
+      "description": "will the roll have advantage?"
     },
     "disadvantage": {
-      "name": "desvantagem",
-      "description": "o rolamento terá desvantagem?"
+      "name": "disadvantage",
+      "description": "will the roll have disadvantage?"
     },
     "modifiers": {
-      "name": "modificadores",
-      "description": "adicione seus modificadores inteiros (+/-)"
+      "name": "modifiers",
+      "description": "add your integer modifiers (+/-)"
     },
-    "action": "rolamento de dados -> {number}"
+    "action": "dice roll -> {number}"
+  },
+	"registerF": {
+    "name": "register",
+    "description": "register the player and relevant information",
+    "user": {
+      "name": "player user",
+      "description": "player user for identification"
+    },
+    "password": {
+      "name": "player password",
+      "description": "password for validation"
+    }
   }
 }

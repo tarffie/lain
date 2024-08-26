@@ -5,7 +5,6 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-
 i18n.configure({
   locales: ['en', 'pt_br'],
   directory: join(__dirname, '..', 'locales'),
@@ -25,5 +24,4 @@ i18n.configure({
 });
 
 i18n.setLocale(config.LOCALE);
-
 export { i18n };

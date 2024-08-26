@@ -1,38 +1,46 @@
 {
-  "common": {
-    "cooldownMessage": "you should wait a tad more before trying that again."
-  },
-  "ping": {
-    "description": "reply with pong",
-    "message": "pong"
-  },
-  "server": {
-    "serverStatus": "This server is {{name}} and has {{memberCount}} members",
-    "serverSatus": "server.serverSatus"
-  },
-  "roll": {
-    "name": "roll",
-    "description": "roll n dice with modificators (or not)",
-    "qty" : {
-      "name": "quantity",
-      "description": "inform how many dice"
-    },
-    "dice": {
-      "name": "dice",
-      "description": "inform your number of sides for your dice"
-    },
-    "advantage": {
-      "name": "advantage",
-      "description": "will the roll have advantage?"
-    },
-    "disadvantage": {
-      "name": "disadvantage",
-      "description": "will the roll have disadvantage?"
-    },
-    "modifiers": {
-      "name": "modifiers",
-      "description": "add your integer modifiers (+/-)"
-    },
-    "action": "dice roll -> {number}"
-  }
+	"common": {
+		"cooldownMessage": "you should wait a tad more before trying that again."
+	},
+	"ping": {
+		"description": "reply with pong",
+		"message": "pong"
+	},
+	"server": {
+		"serverStatus": "This server is {{name}} and has {{memberCount}} members",
+		"serverSatus": "server.serverSatus"
+	},
+	"roll": {
+		"name": "roll",
+		"description": "roll n dice with modificators (or not)",
+		"qty": {
+			"name": "quantity",
+			"description": "inform how many dice"
+		},
+		"dice": {
+			"name": "dice",
+			"description": "inform your number of sides for your dice"
+		},
+		"advantage": {
+			"name": "advantage",
+			"description": "will the roll have advantage?"
+		},
+		"disadvantage": {
+			"name": "disadvantage",
+			"description": "will the roll have disadvantage?"
+		},
+		"modifiers": {
+			"name": "modifiers",
+			"description": "add your integer modifiers (+/-)"
+		},
+		"action": "dice roll -> {number}"
+	},
+	"register": {
+		"name": "register",
+		"description": "Register a new user",
+		"user": {
+			"name": "username",
+			"description": "for our db!"
+		}
+	}
 }
