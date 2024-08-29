@@ -2,7 +2,7 @@
 import pg from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
 // our config files
-import { config } from '@utils/config.js';
+import { config } from '@utils/config';
 import * as schema from './schema';
 
 const assemblePostgresConnectionString = () => {

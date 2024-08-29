@@ -5,11 +5,8 @@ import {
 } from 'discord.js';
 
 import { i18n } from '@utils/i18n';
-import {
-  createUser,
-  getUserById,
-  updateUser,
-} from '@repositories/userRepository';
+import { getOrCreateUser, updateUser } from '@repositories/userRepository';
+
 
 /**
  * The time in seconds to the user to be able to use the command again
@@ -34,27 +31,22 @@ const data = new SlashCommandBuilder()
  * Handles the execution of the command.
  */
 const execute = async (interaction: ChatInputCommandInteraction) => {
-  //await interaction.deferReply();
 
   const opt = interaction.options;
   const id = BigInt(interaction.user.id);
   const user = opt.getString(i18n.__mf('register.user.name'));
 
-  let dbUser = await getUserById(id);
+  let dbUser = await getOrCreateUser({ id: id, user: user })
 
   if (!dbUser) {
-    dbUser = { id, user, count: 0 };
-
-    await createUser(dbUser);
-
     await interaction.reply(`${user} was registered succesfully.`);
   } else {
-    dbUser.count += 1;
+    dbUser.count! += 1
 
-    await updateUser(dbUser);
+    updateUser(dbUser);
 
     await interaction.reply(
-      `${user} was already registered, count ${dbUser.count}.`,
+      `${user} was already registered, count: ${dbUser.count}`,
     );
   }
 };

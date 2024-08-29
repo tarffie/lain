@@ -1,4 +1,4 @@
-import { db } from '@database/db.js';
+import { db } from '@database/db';
 import { users } from '@database/schema';
 import { User } from '@interfaces/user';
 import { eq } from 'drizzle-orm/expressions';
@@ -22,3 +22,13 @@ export const updateUser = async (user: User) => {
     .set({ count: user.count })
     .where(eq(users.id, user.id));
 };
+
+export const getOrCreateUser = async (user: User): Promise<User | void> => {
+  let dbUser = await getUserById(user.id)
+  if (!dbUser) {
+    dbUser = { id: user.id, user: user.user }
+    createUser(dbUser)
+  } else {
+    return dbUser;
+  }
+}
