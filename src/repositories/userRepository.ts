@@ -7,9 +7,8 @@ export const getUserById = async (id: bigint): Promise<User | undefined> => {
   const user = await db.query.users.findFirst({
     where: (users, { eq }) => eq(users.id, id),
   });
-  return user !== undefined
-    ? { id: user.id, user: user.user, count: user.count }
-    : undefined;
+
+  return user
 };
 
 export const createUser = async (user: User) => {

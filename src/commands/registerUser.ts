@@ -43,7 +43,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
   } else {
     dbUser.count! += 1
 
-    updateUser(dbUser);
+    await updateUser(dbUser);
 
     await interaction.reply(
       `${user} was already registered, count: ${dbUser.count}`,

@@ -6,7 +6,10 @@ export const getItemById = async (id: number): Promise<Item | undefined> => {
     where: (item, { eq }) => eq(item.id, id)
   })
 
-  return item !== undefined
-    ? { id: item.id, name: item.name, description: item.description }
-    : undefined
+  return item
 };
+
+export const getItemRowsSize = async (): Promise<number | undefined> => {
+  const rows = await db.query.ItemSchema.findMany();
+  return Object.keys(rows).length
+}

@@ -1,5 +1,5 @@
 export interface User {
   id: bigint;
-  user: string | null;
+  user?: string | null;
   count?: number;
 }

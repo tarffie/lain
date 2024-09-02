@@ -8,14 +8,7 @@ export const getInventoryById = async (id: number): Promise<Inventory | undefine
     where: (inventory, { eq }) => eq(inventory.id, id),
   });
 
-  return inventory !== undefined
-    ? {
-      id: inventory.id,
-      player_id: inventory.player_id,
-      item_id: inventory.item_id,
-      quantity: inventory.quantity
-    }
-    : undefined;
+  return inventory
 }
 
 export const updateInventory = async (inventory: Inventory) => {

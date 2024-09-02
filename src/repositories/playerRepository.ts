@@ -8,12 +8,12 @@ export const getPlayerById = async (id: number): Promise<Player | undefined> => 
     where: (player, { eq }) => eq(player.id, id),
   });
 
-  return player !== undefined ? { id: player.id, level: player.level } : undefined
+  return player
 }
 
 export const updatePlayer = async (player: Player) => {
   await db
     .update(players)
-    .set({ level: player.level})
+    .set({ level: player.level })
     .where(eq(players.id, player.id));
 };

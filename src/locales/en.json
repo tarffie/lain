@@ -1,6 +1,7 @@
 {
 	"common": {
-		"cooldownMessage": "you should wait a tad more before trying that again."
+		"cooldownMessage": "you should wait a tad more before trying that again.",
+		"errorCommand": "Your command returned an error."
 	},
 	"ping": {
 		"description": "reply with pong",
@@ -42,5 +43,9 @@
 			"name": "username",
 			"description": "for our db!"
 		}
+	},
+	"drop": {
+		"name": "drop",
+		"description": "will randomly drop an item for the players to pick"
 	}
 }
