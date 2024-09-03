@@ -14,11 +14,6 @@ const data = new SlashCommandBuilder()
  * Handles the execution of the command.
  */
 const execute = async (interaction: ChatInputCommandInteraction) => {
-  /**
-  * seed = floor(random value * how many items our items table have)
-  */
-
-
   let tableSize = await getItemRowsSize();
   if (tableSize === undefined) tableSize = 1
 
@@ -31,7 +26,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
     .setDescription(`${item!.description}\nreact with an emoji to claim it`)
     .setColor(0xc6a0f6)
 
-  if (drop !== undefined) {
+  if (drop) {
     await interaction.reply(`here's your drop: `);
     await interaction.channel!.send({ embeds: [drop] })
   } else {
