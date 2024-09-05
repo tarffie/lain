@@ -3,6 +3,10 @@ import { Bot } from '@structs/bot.js';
 
 export const bot = new Bot(
   new Client({
-    intents: [GatewayIntentBits.Guilds],
-  }),
+    intents: [
+      GatewayIntentBits.Guilds,
+      GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.GuildMessageReactions
+    ],
+  })
 );

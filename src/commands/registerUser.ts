@@ -22,7 +22,6 @@ const data = new SlashCommandBuilder()
   .setDescription(i18n.__mf('register.description'))
   .addStringOption((option: SlashCommandStringOption) =>
     option
-      .setRequired(true)
       .setName(i18n.__mf('register.user.name'))
       .setDescription(i18n.__mf('register.user.description')),
   );
@@ -36,7 +35,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
   const id = BigInt(interaction.user.id);
   const user = opt.getString(i18n.__mf('register.user.name'));
 
-  let dbUser = await getOrCreateUser({ id: id, user: user })
+  let dbUser = await getOrCreateUser({ id: id, username: (user ? user : interaction.user.username) })
 
   if (!dbUser) {
     await interaction.reply(`${user} was registered succesfully.`);

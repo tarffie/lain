@@ -9,12 +9,6 @@ import {
   Routes,
   Snowflake,
   CacheType,
-  Message,
-  ReactionEmoji,
-  CollectorFilter,
-  MessageReaction,
-  User,
-  ReactionCollectorOptions,
 } from 'discord.js';
 
 import { readdirSync } from 'node:fs';
@@ -51,7 +45,6 @@ export class Bot {
     console.log("Starting bot...");
 
     this.client.login(config.TOKEN).catch(console.error);
-
     this.client.on(
       Events.InteractionCreate,
       this.onInteractionCreate.bind(this),
@@ -139,13 +132,6 @@ export class Bot {
     } catch (e) {
       this.handleErrorMessage(e, interaction);
     }
-  }
-
-  private async onInteractionCollect(interaction: Interaction, message: Message) {
-    const collectorFilter = (reaction: MessageReaction, user: User) => {
-      return reaction.emoji.name !== undefined && user.id === message.author.id
-    }
-    const collector = message.createReactionCollector({ filter: collectorFilter })
   }
 
   /**

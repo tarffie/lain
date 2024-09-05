@@ -19,6 +19,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
       try {
         await messages?.delete(message);
       } catch (err) {
+        console.error(`couldn't delete message ${messages}. error: ${err}`)
         break
       }
     }

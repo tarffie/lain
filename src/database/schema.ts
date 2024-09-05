@@ -1,16 +1,18 @@
-import { varchar, text, pgTable, bigint, integer } from 'drizzle-orm/pg-core';
-
-// define users schema
-export const users = pgTable('users', {
-  id: bigint('id', { mode: 'bigint' }).primaryKey(),
-  user: varchar('username'),
-  count: integer('count').notNull().default(0)
-});
+import { text, pgTable, bigint, integer } from 'drizzle-orm/pg-core';
 
 // Define players schema
 export const PlayerSchema = pgTable('players', {
   id: integer('id').primaryKey(),
+  username: text('username').notNull().unique()
+  .references(() => UserSchema.username),
   level: integer('level').default(1).notNull(),
+});
+
+// define users schema
+export const UserSchema = pgTable('users', {
+  id: bigint('id', { mode: 'bigint' }).primaryKey(),
+  username: text('username').notNull().unique(),
+  count: integer('count').notNull().default(0)
 });
 
 // Define items schema
