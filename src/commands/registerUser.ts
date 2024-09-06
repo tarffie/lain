@@ -6,6 +6,7 @@ import {
 
 import { i18n } from '@utils/i18n';
 import { getOrCreateUser, updateUser } from '@repositories/userRepository';
+import { createPlayer, getPlayerRowCount } from '@repositories/playerRepository';
 
 
 /**
@@ -38,6 +39,9 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
   let dbUser = await getOrCreateUser({ id: id, username: (user ? user : interaction.user.username) })
 
   if (!dbUser) {
+    const playerId = await getPlayerRowCount()
+
+    await createPlayer({ id: playerId!, username: user ? user : interaction.user.username, level: 1 })
     await interaction.reply(`${user} was registered succesfully.`);
   } else {
     dbUser.count! += 1

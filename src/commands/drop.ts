@@ -45,25 +45,24 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
   const dropMessage = await interaction.reply({ embeds: [drop], fetchReply: true });
 
   const collectorFilter = (reaction: MessageReaction, user: User) => {
-    console.log(`Reaction: ${reaction.emoji.name}, User: ${user.username}`);
     return reaction.emoji.name !== undefined && !user.bot// Make sure bots are excluded
   };
 
   const collector = dropMessage.createReactionCollector({ filter: collectorFilter, time: 15000 });
 
-  // this fails without collecting any reaction at all
-  collector.on('collect', async (reaction, user) => {
-    console.log(`Collect event triggered for ${user.username} with emoji: ${reaction.emoji.name}`);
-    await interaction.followUp(`${user.username} claimed the item! ${item!.name}`);
+  collector.on('collect', async () => {
+    await interaction.followUp(`${interaction.user.username} claimed the item! ${item!.name}`);
+
     inventoryDb!.item_id = item!.id;
     inventoryDb!.quantity += 1;
+
     await updateInventory(inventoryDb!);
+
     collector.stop();
   })
-  // this runs
+
   collector.on('end', async collected => {
     if (collected.size === 0) {
-      console.log(collected)
       await interaction.followUp('No one claimed the item');
     }
   })

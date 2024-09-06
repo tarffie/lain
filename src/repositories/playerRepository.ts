@@ -26,7 +26,7 @@ export const createPlayer = async (player: Player) => {
 };
 
 
-const getPlayerRowCount = async (): Promise<number | undefined> => {
+export const getPlayerRowCount = async (): Promise<number | undefined> => {
   const rows = await db.query.PlayerSchema.findMany();
   return Object.keys(rows).length
 }
