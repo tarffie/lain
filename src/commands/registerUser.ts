@@ -43,6 +43,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
 
     await createPlayer({ id: playerId!, username: user ? user : interaction.user.username, level: 1 })
     await interaction.reply(`${user} was registered succesfully.`);
+
   } else {
     dbUser.count! += 1
 

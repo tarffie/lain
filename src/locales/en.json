@@ -47,5 +47,9 @@
 	"drop": {
 		"name": "drop",
 		"description": "will randomly drop an item for the players to pick"
+	},
+	"inventory": {
+		"name": "inventory",
+		"description": "Show your inventory only for you!"
 	}
 }

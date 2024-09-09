@@ -17,7 +17,7 @@ import { getOrCreatePlayer } from '@repositories/playerRepository';
  */
 const data = new SlashCommandBuilder()
   .setName(i18n.__mf('drop.name'))
-  .setDescription('drop.description')
+  .setDescription(i18n.__mf('drop.description'))
 
 /**
  * Handles the execution of the command.
