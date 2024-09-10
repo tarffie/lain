@@ -11,15 +11,6 @@ export const getUserById = async (id: bigint): Promise<User | undefined> => {
   return user
 };
 
-export const getUserByUsername = async (username: string): Promise<User | undefined> => {
-  const user = await db.query.UserSchema.findFirst({
-    where: (users, { eq }) => eq(users.username, username),
-  });
-
-  return user
-}
-
-
 export const createUser = async (user: User) => {
   await db.insert(users).values(user);
 };
@@ -28,16 +19,15 @@ export const createUser = async (user: User) => {
 export const updateUser = async (user: User) => {
   await db
     .update(users)
-    .set({ count: user.count })
+    .set({ level: user.level })
     .where(eq(users.id, user.id));
 };
 
-export const getOrCreateUser = async (user: User): Promise<User | void> => {
-  let dbUser = await getUserById(user.id)
+export const getOrCreateUser = async (id: bigint): Promise<User> => {
+  let dbUser = await getUserById(id)
   if (!dbUser) {
-    dbUser = { id: user.id, username: user.username }
+    dbUser = { id: id, level: 1 }
     createUser(dbUser!)
-  } else {
-    return dbUser;
   }
+  return dbUser;
 }

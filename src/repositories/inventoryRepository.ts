@@ -1,8 +1,13 @@
 import { db } from '@database/db';
 import { InventorySchema as inventories } from '@database/schema';
 import { Inventory } from '@interfaces/inventory';
-import { eq } from 'drizzle-orm/expressions'
+import { Item } from '@interfaces/item';
+import { User } from '@interfaces/user';
+import { and, eq } from 'drizzle-orm/expressions'
 
+/**
+ * Get inventory by Inventory ID
+ */
 export const getInventoryById = async (id: number): Promise<Inventory | undefined> => {
   const inventory = await db.query.InventorySchema.findFirst({
     where: (inventory, { eq }) => eq(inventory.id, id),
@@ -10,24 +15,48 @@ export const getInventoryById = async (id: number): Promise<Inventory | undefine
 
   return inventory
 }
+/**
+ * Find specific inventory by player id and item id 
+ */
+export const findInventory = async (item: Item, user: User): Promise<Inventory> => {
+  const inventory = await db.query.InventorySchema.findFirst({
+    where: (inventory, { eq }) => and(
+      eq(inventory.user_id, user.id),
+      eq(inventory.item_id, item.id),
+    )
+  });
 
-const createInventory = async (inventory: Inventory) => {
+  return inventory!;
+}
+
+// create new inventory 
+export const createInventory = async (user_id: bigint, item_id: number, quantity: number) => {
+  let inventory = { user_id, item_id, quantity }
   await db.insert(inventories).values(inventory);
 }
 
-export const getInventoryByPlayerId = async (id: number): Promise<Inventory | undefined> => {
-  const inventory = await db.query.InventorySchema.findFirst({
-    where: (inventory, { eq }) => eq(inventory.player_id, id),
+/**
+ * Search for all inventory owned by certain player
+ */
+export const getInventoryByUserId = async (id: bigint): Promise<Inventory | Inventory[] | undefined> => {
+  const inventory = await db.query.InventorySchema.findMany({
+    where: (inventory, { eq }) => eq(inventory.user_id, id),
   });
 
   return inventory
 }
 
-const getInventoryRowCount = async (): Promise<number | undefined> => {
+/**
+ * check how many inventory rows we have stored
+ */
+export const getInventoryRowCount = async (): Promise<number | undefined> => {
   const rows = await db.query.InventorySchema.findMany();
   return Object.keys(rows).length
 }
 
+/**
+ * update specific inventory, one at a time
+ */
 export const updateInventory = async (inventory: Inventory) => {
   await db
     .update(inventories)
@@ -35,17 +64,16 @@ export const updateInventory = async (inventory: Inventory) => {
     .where(eq(inventories.id, inventory.id))
 }
 
-export const getOrCreateInventory = async (id: number): Promise<Inventory | void> => {
-  let dbInventory = await getInventoryByPlayerId(id);
+/** 
+ * check if player has specific item
+ */
+export const inventoryHasItem = async (item: Item, user: User): Promise<boolean> => {
+  const inventoryDb = await db.query.InventorySchema.findFirst({
+    where: (fields, { eq }) => and(
+      eq(fields.item_id, item.id),
+      eq(fields.user_id, user.id),
+    )
+  });
 
-  if (!dbInventory) {
-    const idInv = await getInventoryRowCount();
-
-    // item_id = -1 means inventory is empty
-    dbInventory = { id: idInv!, player_id: id, item_id: -1, quantity: 1 }
-
-    await createInventory(dbInventory);
-  } else {
-    return dbInventory;
-  }
+  return inventoryDb !== undefined ? true : false
 }

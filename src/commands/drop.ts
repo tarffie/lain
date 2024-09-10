@@ -8,9 +8,8 @@ import {
 
 import { i18n } from '@utils/i18n';
 import { getItemById, getItemRowsSize } from '@repositories/itemRepository';
-import { getOrCreateInventory, updateInventory } from '@repositories/inventoryRepository';
-import { getUserById } from '@repositories/userRepository';
-import { getOrCreatePlayer } from '@repositories/playerRepository';
+import { createInventory, findInventory,  inventoryHasItem, updateInventory } from '@repositories/inventoryRepository';
+import { getOrCreateUser } from '@repositories/userRepository';
 
 /**
  * Sets up the command.
@@ -24,18 +23,13 @@ const data = new SlashCommandBuilder()
  */
 const execute = async (interaction: ChatInputCommandInteraction) => {
   // TODO: refactor execute command
-  const userDb = await getUserById(BigInt(interaction.user.id))
-  const playerDb = await getOrCreatePlayer(userDb!)
+  const userDb = await getOrCreateUser(BigInt(interaction.user.id))
 
 
-  let tableSize = await getItemRowsSize();
-  if (tableSize === undefined || tableSize === 2) tableSize = 1;
+  let tableSize = await getItemRowsSize() || 1;
 
   let seed = Math.ceil(Math.random() * tableSize);
-
   let item = await getItemById(seed);
-
-  let inventoryDb = await getOrCreateInventory(playerDb?.id!);
 
   const drop = new EmbedBuilder()
     .setTitle(item!.name)
@@ -44,20 +38,22 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
 
   const dropMessage = await interaction.reply({ embeds: [drop], fetchReply: true });
 
-  const collectorFilter = (reaction: MessageReaction, user: User) => {
-    return reaction.emoji.name !== undefined && !user.bot// Make sure bots are excluded
-  };
-
+  const collectorFilter = (reaction: MessageReaction, user: User) => reaction.emoji.name !== undefined && !user.bot;
   const collector = dropMessage.createReactionCollector({ filter: collectorFilter, time: 15000 });
 
   collector.on('collect', async () => {
     await interaction.followUp(`${interaction.user.username} claimed the item! ${item!.name}`);
 
-    inventoryDb!.item_id = item!.id;
-    inventoryDb!.quantity += 1;
+    if (await inventoryHasItem(item!, userDb!)) {
+      let inventory = await findInventory(item!, userDb!);
 
-    await updateInventory(inventoryDb!);
+      inventory!.quantity += 1;
 
+      await updateInventory(inventory);
+    } else {
+
+      await createInventory(userDb.id, item!.id, 1);
+    }
     collector.stop();
   })
 

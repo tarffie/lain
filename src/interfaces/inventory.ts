@@ -1,6 +1,6 @@
 export interface Inventory {
   id: number
-  player_id: number
+  user_id: bigint 
   item_id: number
   quantity: number
 }
